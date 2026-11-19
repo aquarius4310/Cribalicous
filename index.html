@@ -9,14 +9,14 @@
 <style>
 /* Layout: sticky brand bar over a single centered column; each "screen" is a view swapped by the URL hash. */
 :root{
-  /* Palette from the team: sage #6B9080, orange #F4A261, gold #E9C46A, cream #FAF7F2, ink #2B2D42, mint #CCE3DE.
-     --blue is a darker sage (#4f6e60) so white button text and links pass contrast. Single light theme by choice. */
-  --bg:#FAF7F2; --surface:#ffffff; --ink:#2B2D42; --muted:#5c5f73; --line:#e4e0d6;
-  --sage:#6B9080; --mintc:#CCE3DE; --gold:#E9C46A;
-  --pink:#F4A261; --pink-shade:#F4A261; --pink-ink:#9a5a24; --pink-soft:#fbe6d4;
-  --blue:#4f6e60; --blue-soft:#CCE3DE;
-  --good:#3f5e51; --good-soft:#CCE3DE; --warn:#8a4a17; --warn-soft:#fbe6d4;
-  --save-bg:#E9C46A; --save-ink:#2B2D42;
+  /* "Warm & Trustworthy" palette: navy #1E40AF primary, terracotta #E06D53 accent, alabaster #FAF8F5 bg,
+     charcoal #1F2937 / slate #4B5563 text, mint #DCFCE7 + forest #166534 savings. Single light theme by choice. */
+  --bg:#FAF8F5; --surface:#ffffff; --ink:#1F2937; --muted:#4B5563; --line:#E5E7EB;
+  --sage:#1E40AF; --mintc:#DBEAFE; --gold:#F6C9BD;
+  --pink:#E06D53; --pink-shade:#E06D53; --pink-ink:#A8432C; --pink-soft:#FBE3DC;
+  --blue:#1E40AF; --blue-soft:#DBEAFE;
+  --good:#166534; --good-soft:#DCFCE7; --warn:#A8432C; --warn-soft:#FBE3DC;
+  --save-bg:#DCFCE7; --save-ink:#166534;
   --display:"Fredoka","Nunito",ui-rounded,system-ui,sans-serif;
   --body:"Nunito",ui-rounded,system-ui,-apple-system,sans-serif;
   --r:14px;
@@ -58,20 +58,20 @@ nav{margin-left:auto;display:flex;gap:4px;align-items:center}
 nav a{white-space:nowrap;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700}
 nav a.on{background:var(--blue-soft);color:var(--blue)}
 .cartbtn{display:flex;align-items:center;gap:6px}
-.badge{background:var(--pink);color:#2B2D42;border-radius:999px;font-size:.75rem;padding:0 7px;font-weight:800;min-width:20px;text-align:center}
+.badge{background:var(--pink);color:#1F2937;border-radius:999px;font-size:.75rem;padding:0 7px;font-weight:800;min-width:20px;text-align:center}
 @media (max-width:560px){.logo .mark{height:36px}.logo .w1,.logo .w2{font-size:19px}.logo .bigc{font-size:46px;--cy:-6px}.logo:hover .pram,.logo.rolled .pram{transform:translateX(150px)} nav{gap:0} nav a{padding:8px 7px;font-size:.9rem}}
 
 main{padding-block:28px 64px}
 .view{display:grid;gap:28px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;font-weight:800;cursor:pointer;text-decoration:none;font-size:1rem}
 .btn.primary{background:var(--blue);color:#fff}
-.btn.pink{background:var(--pink);color:#2B2D42}
+.btn.pink{background:var(--pink);color:#1F2937}
 .btn.ghost{background:rgb(255 255 255 / .65);border:2px solid var(--blue);color:var(--blue)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn.small{padding:8px 14px;font-size:.9rem}
 .muted{color:var(--muted)}
 .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pink-ink)}
-.panel{background:var(--surface);border:1px solid rgb(255 255 255 / .7);box-shadow:0 2px 10px rgb(33 109 199 / .08);border-radius:var(--r);padding:20px}
+.panel{background:var(--surface);border:1px solid rgb(255 255 255 / .7);box-shadow:0 2px 10px rgb(30 64 175 / .08);border-radius:var(--r);padding:20px}
 
 /* home */
 .hero{padding-block:clamp(8px,3vw,28px);display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center}
@@ -96,7 +96,7 @@ main{padding-block:28px 64px}
 .chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer}
 .chip.on{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.card{background:var(--surface);border:1px solid rgb(255 255 255 / .7);box-shadow:0 2px 10px rgb(33 109 199 / .08);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s}
+.card{background:var(--surface);border:1px solid rgb(255 255 255 / .7);box-shadow:0 2px 10px rgb(30 64 175 / .08);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s}
 .card:hover{transform:translateY(-3px)}
 .card .pic{background:var(--blue-soft);aspect-ratio:4/3;display:grid;place-items:center;max-width:100%}
 .card .pic svg{width:46%;height:auto}
@@ -209,17 +209,17 @@ footer{border-top:1px solid rgb(255 255 255 / .6);padding-block:24px;font-size:.
 <!-- Icon sprites -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <defs>
-  <symbol id="i-pram" viewBox="0 0 48 48"><g fill="none" stroke="#d9823f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h30a0 0 0 0 1 0 0 15 10 0 0 1-15 10 15 10 0 0 1-15-10z" fill="#F4A261"/><path d="M23 20V7a13 13 0 0 1 13 13z" fill="#f9cfae"/><path d="M38 20l4-6"/><circle cx="14" cy="38" r="4" fill="#fff"/><circle cx="32" cy="38" r="4" fill="#fff"/><path d="M28 9l4 11M31 12l3 8"/></g></symbol>
-  <symbol id="i-crib" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="14" width="48" height="34" rx="4" fill="#fff"/><path d="M16 18v26M24 18v26M32 18v26M40 18v26M48 18v26"/><path d="M8 48v8M56 48v8"/><rect x="8" y="36" width="48" height="8" fill="#F4A261" stroke="none" opacity=".6"/></g></symbol>
-  <symbol id="i-bassinet" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h48l-4 16a8 8 0 0 1-8 6H20a8 8 0 0 1-8-6z" fill="#fff"/><path d="M10 22c2-8 12-12 22-12" /><path d="M22 44l-8 14M42 44l8 14M18 52h28"/><path d="M14 30h36" stroke="#F4A261"/></g></symbol>
-  <symbol id="i-stroller" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 26h34a17 12 0 0 1-17 12 17 12 0 0 1-17-12z" fill="#fff"/><path d="M29 26V8a18 18 0 0 1 18 18z" fill="#F4A261" opacity=".8"/><path d="M46 26l6-10h4"/><path d="M20 38l-4 10M38 38l4 10"/><circle cx="16" cy="52" r="5" fill="#fff"/><circle cx="44" cy="52" r="5" fill="#fff"/></g></symbol>
-  <symbol id="i-travel" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M40 6l-10 42"/><path d="M48 8l-6 40"/><path d="M36 6h16"/><path d="M18 28h22l-2 12H22z" fill="#F4A261" opacity=".8"/><path d="M14 22l8 6"/><path d="M22 40l-6 12M38 40l6 12"/><circle cx="15" cy="54" r="4" fill="#fff"/><circle cx="45" cy="54" r="4" fill="#fff"/></g></symbol>
-  <symbol id="i-highchair" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6h20v22H22z" fill="#fff"/><path d="M14 30h36" stroke="#F4A261" stroke-width="5"/><path d="M20 34h24v6H20z" fill="#fff"/><path d="M22 40l-8 18M42 40l8 18M18 50h28"/></g></symbol>
-  <symbol id="i-carrier" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8c0 10 4 14 14 14s14-4 14-14"/><path d="M16 22h32v20a16 16 0 0 1-32 0z" fill="#fff"/><path d="M16 30h32" stroke="#F4A261" stroke-width="5"/><circle cx="32" cy="40" r="5"/></g></symbol>
-  <symbol id="i-playyard" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l10-8h38l-10 8z" fill="#fff"/><path d="M8 18h38v32H8zM46 18l10-8v32l-10 8"/><path d="M14 22v24M20 22v24M26 22v24M32 22v24M38 22v24" stroke-width="1.5" opacity=".6"/><path d="M8 44h38" stroke="#F4A261" stroke-width="5"/></g></symbol>
-  <symbol id="i-swing" viewBox="0 0 64 64"><g fill="none" stroke="#6B9080" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 58L28 8h8l18 50"/><path d="M28 8l4 26M36 8l-4 26"/><path d="M20 36h24a12 10 0 0 1-24 0z" fill="#F4A261" opacity=".8"/></g></symbol>
-  <symbol id="i-box" viewBox="0 0 120 120"><g stroke="#6B9080" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M20 52l40-16 40 16v44l-40 16-40-16z" fill="#CCE3DE"/><path d="M60 68v44" fill="none"/><path d="M20 52l40 16 40-16" fill="none"/><path d="M20 52l-10 14 40 16 10-14z" fill="#e6f1ee"/><path d="M100 52l10 14-40 16-10-14z" fill="#e6f1ee"/></g></symbol>
-  <symbol id="i-bundle" viewBox="0 0 64 64"><g stroke="#6B9080" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 28l22-9 22 9v24l-22 9-22-9z" fill="#CCE3DE"/><path d="M10 28l22 9 22-9M32 37v24" fill="none"/><path d="M18 22l14-16 14 16" fill="none" stroke="#d9823f"/><circle cx="32" cy="8" r="3" fill="#F4A261" stroke="#d9823f"/></g></symbol>
+  <symbol id="i-pram" viewBox="0 0 48 48"><g fill="none" stroke="#B4483A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h30a0 0 0 0 1 0 0 15 10 0 0 1-15 10 15 10 0 0 1-15-10z" fill="#E06D53"/><path d="M23 20V7a13 13 0 0 1 13 13z" fill="#F2B3A4"/><path d="M38 20l4-6"/><circle cx="14" cy="38" r="4" fill="#fff"/><circle cx="32" cy="38" r="4" fill="#fff"/><path d="M28 9l4 11M31 12l3 8"/></g></symbol>
+  <symbol id="i-crib" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="14" width="48" height="34" rx="4" fill="#fff"/><path d="M16 18v26M24 18v26M32 18v26M40 18v26M48 18v26"/><path d="M8 48v8M56 48v8"/><rect x="8" y="36" width="48" height="8" fill="#E06D53" stroke="none" opacity=".6"/></g></symbol>
+  <symbol id="i-bassinet" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h48l-4 16a8 8 0 0 1-8 6H20a8 8 0 0 1-8-6z" fill="#fff"/><path d="M10 22c2-8 12-12 22-12" /><path d="M22 44l-8 14M42 44l8 14M18 52h28"/><path d="M14 30h36" stroke="#E06D53"/></g></symbol>
+  <symbol id="i-stroller" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 26h34a17 12 0 0 1-17 12 17 12 0 0 1-17-12z" fill="#fff"/><path d="M29 26V8a18 18 0 0 1 18 18z" fill="#E06D53" opacity=".8"/><path d="M46 26l6-10h4"/><path d="M20 38l-4 10M38 38l4 10"/><circle cx="16" cy="52" r="5" fill="#fff"/><circle cx="44" cy="52" r="5" fill="#fff"/></g></symbol>
+  <symbol id="i-travel" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M40 6l-10 42"/><path d="M48 8l-6 40"/><path d="M36 6h16"/><path d="M18 28h22l-2 12H22z" fill="#E06D53" opacity=".8"/><path d="M14 22l8 6"/><path d="M22 40l-6 12M38 40l6 12"/><circle cx="15" cy="54" r="4" fill="#fff"/><circle cx="45" cy="54" r="4" fill="#fff"/></g></symbol>
+  <symbol id="i-highchair" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6h20v22H22z" fill="#fff"/><path d="M14 30h36" stroke="#E06D53" stroke-width="5"/><path d="M20 34h24v6H20z" fill="#fff"/><path d="M22 40l-8 18M42 40l8 18M18 50h28"/></g></symbol>
+  <symbol id="i-carrier" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8c0 10 4 14 14 14s14-4 14-14"/><path d="M16 22h32v20a16 16 0 0 1-32 0z" fill="#fff"/><path d="M16 30h32" stroke="#E06D53" stroke-width="5"/><circle cx="32" cy="40" r="5"/></g></symbol>
+  <symbol id="i-playyard" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l10-8h38l-10 8z" fill="#fff"/><path d="M8 18h38v32H8zM46 18l10-8v32l-10 8"/><path d="M14 22v24M20 22v24M26 22v24M32 22v24M38 22v24" stroke-width="1.5" opacity=".6"/><path d="M8 44h38" stroke="#E06D53" stroke-width="5"/></g></symbol>
+  <symbol id="i-swing" viewBox="0 0 64 64"><g fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 58L28 8h8l18 50"/><path d="M28 8l4 26M36 8l-4 26"/><path d="M20 36h24a12 10 0 0 1-24 0z" fill="#E06D53" opacity=".8"/></g></symbol>
+  <symbol id="i-box" viewBox="0 0 120 120"><g stroke="#1E40AF" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M20 52l40-16 40 16v44l-40 16-40-16z" fill="#DBEAFE"/><path d="M60 68v44" fill="none"/><path d="M20 52l40 16 40-16" fill="none"/><path d="M20 52l-10 14 40 16 10-14z" fill="#EEF2FF"/><path d="M100 52l10 14-40 16-10-14z" fill="#EEF2FF"/></g></symbol>
+  <symbol id="i-bundle" viewBox="0 0 64 64"><g stroke="#1E40AF" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 28l22-9 22 9v24l-22 9-22-9z" fill="#DBEAFE"/><path d="M10 28l22 9 22-9M32 37v24" fill="none"/><path d="M18 22l14-16 14 16" fill="none" stroke="#B4483A"/><circle cx="32" cy="8" r="3" fill="#E06D53" stroke="#B4483A"/></g></symbol>
  </defs>
 </svg>
 
