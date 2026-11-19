@@ -41,14 +41,21 @@ a{color:var(--blue)}
 .ribbon{background:var(--blue);color:#fff;font-size:.82rem;font-weight:700;text-align:center;padding-block:6px}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
-.logo{display:block;line-height:0}
-.logo img{height:52px;width:auto;display:block}
+.logo{display:flex;align-items:center;gap:2px;line-height:0;position:relative;text-decoration:none}
+.logo .mark{position:relative;display:block;height:54px;aspect-ratio:182/227}
+.logo .bigc{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:66px;line-height:1;color:var(--pink);opacity:0;transform:scale(.6);transition:opacity .35s .45s,transform .35s .45s}
+.logo .pram{position:absolute;inset:0;height:100%;width:100%;z-index:1;transition:transform 1.1s cubic-bezier(.5,0,.4,1),opacity .3s .8s}
+.logo .word{height:50px;width:auto;display:block;position:relative;z-index:0}
+.logo:hover .pram,.logo.rolled .pram{transform:translateX(230px);opacity:0;animation:wobble .25s linear 4}
+.logo:hover .bigc,.logo.rolled .bigc{opacity:1;transform:scale(1)}
+@keyframes wobble{0%,100%{rotate:0deg}50%{rotate:-4deg}}
+@media (prefers-reduced-motion:reduce){.logo .pram,.logo .bigc{transition:opacity .2s}.logo:hover .pram,.logo.rolled .pram{transform:none;animation:none}}
 nav{margin-left:auto;display:flex;gap:4px;align-items:center}
 nav a{white-space:nowrap;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700}
 nav a.on{background:var(--blue-soft);color:var(--blue)}
 .cartbtn{display:flex;align-items:center;gap:6px}
 .badge{background:var(--pink);color:#3b1416;border-radius:999px;font-size:.75rem;padding:0 7px;font-weight:800;min-width:20px;text-align:center}
-@media (max-width:560px){.logo img{height:auto;max-height:40px;max-width:36vw} nav{gap:0} nav a{padding:8px 7px;font-size:.9rem}}
+@media (max-width:560px){.logo .mark{height:36px}.logo .word{height:33px}.logo .bigc{font-size:44px}.logo:hover .pram,.logo.rolled .pram{transform:translateX(150px)} nav{gap:0} nav a{padding:8px 7px;font-size:.9rem}}
 
 main{padding-block:28px 64px}
 .view{display:grid;gap:28px}
@@ -183,7 +190,7 @@ footer{border-top:1px solid rgb(255 255 255 / .6);padding-block:24px;font-size:.
 
 <div class="ribbon">Class demo: nothing here is a real order. Prices are estimates from our pricing research.</div>
 <header><div class="wrap">
-  <a class="logo" href="#home"><img src="logo.png" alt="Crying for Cribalicious" width="1065" height="261"></a>
+  <a class="logo" href="#home" aria-label="Crying for Cribalicious, home"><span class="mark" aria-hidden="true"><span class="bigc">C</span><img class="pram" src="pram.png" alt="" width="182" height="227"></span><img class="word" src="wordmark.png" alt="" width="837" height="217"></a>
   <nav>
     <a href="#gear" data-nav="gear">Gear</a>
     <a href="#rentals" data-nav="rentals">My rentals</a>
@@ -536,6 +543,9 @@ function bindCheckout(){
     S.cart=[]; S.lastOrder=o; location.hash="confirmed";
   });
 }
+
+/* ---------- logo roll on tap (touch screens have no hover) ---------- */
+document.querySelector(".logo").addEventListener("touchstart",e=>{const l=e.currentTarget;l.classList.add("rolled");clearTimeout(l._t);l._t=setTimeout(()=>l.classList.remove("rolled"),2200);},{passive:true});
 
 /* ---------- global clicks ---------- */
 document.addEventListener("click",e=>{
