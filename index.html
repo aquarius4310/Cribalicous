@@ -41,15 +41,14 @@ a{color:var(--blue)}
 .ribbon{background:var(--blue);color:#fff;font-size:.82rem;font-weight:700;text-align:center;padding-block:6px}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;gap:12px;padding-block:10px}
-.logo{display:flex;align-items:flex-end;gap:0;text-decoration:none;color:var(--pink);font-family:var(--display);font-weight:700;font-size:1.65rem;letter-spacing:.5px;text-transform:uppercase;line-height:1}
-.logo svg{width:44px;height:44px;margin-right:-2px}
-.logo span{padding-bottom:5px}
+.logo{display:block;line-height:0}
+.logo img{height:52px;width:auto;display:block}
 nav{margin-left:auto;display:flex;gap:4px;align-items:center}
-nav a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700}
+nav a{white-space:nowrap;padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700}
 nav a.on{background:var(--blue-soft);color:var(--blue)}
 .cartbtn{display:flex;align-items:center;gap:6px}
 .badge{background:var(--pink);color:#3b1416;border-radius:999px;font-size:.75rem;padding:0 7px;font-weight:800;min-width:20px;text-align:center}
-@media (max-width:560px){.logo span{display:none} nav a{padding:8px 9px;font-size:.95rem}}
+@media (max-width:560px){.logo img{height:auto;max-height:40px;max-width:36vw} nav{gap:0} nav a{padding:8px 7px;font-size:.9rem}}
 
 main{padding-block:28px 64px}
 .view{display:grid;gap:28px}
@@ -184,7 +183,7 @@ footer{border-top:1px solid rgb(255 255 255 / .6);padding-block:24px;font-size:.
 
 <div class="ribbon">Class demo: nothing here is a real order. Prices are estimates from our pricing research.</div>
 <header><div class="wrap">
-  <a class="logo" href="#home" aria-label="Cribalicious home"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-pram"/></svg><span>ribalicious</span></a>
+  <a class="logo" href="#home"><img src="logo.png" alt="Crying for Cribalicious" width="1065" height="261"></a>
   <nav>
     <a href="#gear" data-nav="gear">Gear</a>
     <a href="#rentals" data-nav="rentals">My rentals</a>
