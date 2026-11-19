@@ -415,7 +415,7 @@ checkout(){
     <form class="panel" id="coForm" novalidate>
       <p class="muted" style="font-size:.9rem">Filled in with an example customer. Change anything you like.</p>
       <div class="fields">
-        <label class="full">Full name<input type="text" id="f-name" value="Fatima Johnson" required></label>
+        <label class="full">Full name<input type="text" id="f-name" value="Fatima Mrabet" required></label>
         <label class="full">Email<input type="email" id="f-email" value="fatima@example.com" required></label>
         <label class="full">Street address<input type="text" id="f-street" value="1420 U St NW, Apt 3B" required></label>
         <label>City<input type="text" id="f-city" value="Washington, DC" readonly></label>
@@ -460,7 +460,7 @@ confirmed(){
 rentals(){
   const order={active:0,pickup:1,owned:2,returned:3};
   const list=S.rentals.slice().sort((a,b)=>order[a.status]-order[b.status]);
-  return `<div style="display:grid;gap:6px"><h1>My rentals</h1><p class="muted">Signed in as Fatima (example account). Rentals marked "example" are sample data.</p></div>
+  return `<div style="display:grid;gap:6px"><h1>My rentals</h1><p class="muted">Signed in as Fatima Mrabet (example account). Rentals marked "example" are sample data.</p></div>
   <div class="rentals">${list.map(r=>{
     const g=gear(r.id), t=tier(r.tier), end=addMonths(r.start,t.months), done=Math.min(1,Math.max(0,(today-r.start)/(end-r.start)));
     const daysLeft=Math.round((end-today)/864e5), notStarted=r.start>today, capped=hitsCap(g,t);
