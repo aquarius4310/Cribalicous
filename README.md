@@ -19,7 +19,7 @@ A clickable demo of Cribalicious, a baby gear rental business for new parents in
 - Prices come from the team's pricing research.
 - A customer never pays more than 60% of the new price. At the cap, the item is theirs to keep.
 - Delivery is $25 each way for rentals under 3 months, and free at 3+ months or on orders over $150.
-- Cribs and Pack 'n Plays are short-term only. No car seats.
+- Cribs and Pack 'n Plays are short-term only. Car seats (marked *) are sold new to one customer and never re-rented.
 
 ## Changing prices
 

@@ -216,6 +216,7 @@ footer{border-top:1px solid rgb(255 255 255 / .6);padding-block:24px;font-size:.
   <symbol id="i-carrier" viewBox="0 0 64 64"><g fill="none" stroke="#216dc7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8c0 10 4 14 14 14s14-4 14-14"/><path d="M16 22h32v20a16 16 0 0 1-32 0z" fill="#fff"/><path d="M16 30h32" stroke="#ee9597" stroke-width="5"/><circle cx="32" cy="40" r="5"/></g></symbol>
   <symbol id="i-playyard" viewBox="0 0 64 64"><g fill="none" stroke="#216dc7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l10-8h38l-10 8z" fill="#fff"/><path d="M8 18h38v32H8zM46 18l10-8v32l-10 8"/><path d="M14 22v24M20 22v24M26 22v24M32 22v24M38 22v24" stroke-width="1.5" opacity=".6"/><path d="M8 44h38" stroke="#ee9597" stroke-width="5"/></g></symbol>
   <symbol id="i-swing" viewBox="0 0 64 64"><g fill="none" stroke="#216dc7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 58L28 8h8l18 50"/><path d="M28 8l4 26M36 8l-4 26"/><path d="M20 36h24a12 10 0 0 1-24 0z" fill="#ee9597" opacity=".8"/></g></symbol>
+  <symbol id="i-carseat" viewBox="0 0 64 64"><g fill="none" stroke="#216dc7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 20c0-8 8-12 18-12s18 4 18 12" /><path d="M12 30h40l-4 16a8 8 0 0 1-8 6H24a8 8 0 0 1-8-6z" fill="#fff"/><path d="M18 30c2-8 8-12 14-12s12 4 14 12" fill="#ee9597" opacity=".8"/><path d="M10 56h44" stroke="#ee9597" stroke-width="5"/></g></symbol>
   <symbol id="i-box" viewBox="0 0 120 120"><g stroke="#216dc7" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M20 52l40-16 40 16v44l-40 16-40-16z" fill="#bcd6f7"/><path d="M60 68v44" fill="none"/><path d="M20 52l40 16 40-16" fill="none"/><path d="M20 52l-10 14 40 16 10-14z" fill="#d7e7fb"/><path d="M100 52l10 14-40 16-10-14z" fill="#d7e7fb"/></g></symbol>
   <symbol id="i-bundle" viewBox="0 0 64 64"><g stroke="#216dc7" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M10 28l22-9 22 9v24l-22 9-22-9z" fill="#bcd6f7"/><path d="M10 28l22 9 22-9M32 37v24" fill="none"/><path d="M18 22l14-16 14 16" fill="none" stroke="#c9545a"/><circle cx="32" cy="8" r="3" fill="#ee9597" stroke="#c9545a"/></g></symbol>
  </defs>
@@ -250,9 +251,10 @@ const GEAR = [
   {id:"midstroller",name:"Everyday Stroller",cat:"On the go", icon:"i-travel", retail:250,  prices:{"2w":44,"1m":49,"3m":109,"6m":134,"12m":150}, ages:"Newborn to 4 yrs", std:"CPSC stroller standard (16 CFR 1227)", desc:"Light, reliable stroller with a one-hand fold that fits on Metro."},
   {id:"highchair", name:"High Chair",       cat:"Play & feed", icon:"i-highchair", retail:170, prices:{"2w":34,"1m":39,"3m":89,"6m":102}, ages:"6 months to 3 yrs", std:"CPSC high chair standard (16 CFR 1231)", desc:"Wipe-clean seat and removable tray. Rent it for 6 months and it's yours to keep.", popular:true},
   {id:"crib",      name:"Crib",             cat:"Sleep",   icon:"i-crib",      retail:230,  prices:{"2w":84,"1m":89}, ages:"Short stays", std:"CPSC full-size crib standard (16 CFR 1219)", desc:"For visiting grandparents, guests and trial runs. Short-term only: if you need a crib for years, buying is cheaper."},
+  {id:"carseat",   name:"Infant Car Seat*", cat:"On the go", icon:"i-carseat", retail:300, prices:{"12m":180}, ages:"4 to 35 lbs", std:"federal car seat standard (FMVSS 213)", desc:"Rear-facing infant seat with a click-in base. Delivered sealed in the box and fitted with you at drop-off.", note:"*Car seats are brand-new for every customer and never re-rented, because a seat's crash history can't be verified. You keep it when you're done."},
   {id:"playyard",  name:"Pack 'n Play",     cat:"Sleep",   icon:"i-playyard",  retail:100,  prices:{"2w":29,"1m":29}, ages:"Short stays", std:"CPSC play yard standard (16 CFR 1221)", desc:"Portable sleep space for trips and guests. Short-term only."},
 ];
-// No car seats: crash history can't be verified and they expire.
+// Car seats: sold new to one customer only (crash history can't be verified), priced at the 60% cap so the customer keeps it.
 
 /* ---------- pricing ---------- */
 const gear = id => GEAR.find(g=>g.id===id);
@@ -342,7 +344,7 @@ home(){
 gear(){
   const cats=["All",...new Set(GEAR.map(g=>g.cat))];
   const list=GEAR.filter(g=>S.filter==="All"||g.cat===S.filter);
-  return `<div style="display:grid;gap:8px"><h1>Gear</h1><p class="muted">Prices shown are the lowest monthly rate. Pick your length on the item page. We don't rent car seats, because their crash history can't be verified.</p></div>
+  return `<div style="display:grid;gap:8px"><h1>Gear</h1><p class="muted">Prices shown are the lowest monthly rate. Pick your length on the item page.</p></div>
   <div class="filters">${cats.map(c=>`<button class="chip ${S.filter===c?"on":""}" data-filter="${c}">${c}</button>`).join("")}</div>
   <div class="grid">${list.map(card).join("")}</div>`;
 },
@@ -358,10 +360,10 @@ item(id){
   <div class="item">
     <div class="pic">${icon(g.icon)}</div>
     <div class="info">
-      <div style="display:grid;gap:6px"><p class="eyebrow">${g.cat}</p><h1>${g.name}</h1><p>${g.desc}</p></div>
+      <div style="display:grid;gap:6px"><p class="eyebrow">${g.cat}</p><h1>${g.name}</h1><p>${g.desc}</p>${g.note?`<p class="muted" style="font-size:.88rem">${g.note}</p>`:""}</div>
       <div class="facts"><span>Ages: ${g.ages}</span><span>New retail: <span class="num">${money(retailOf(g))}</span></span></div>
       ${g.includes?`<div class="panel" style="display:grid;gap:8px"><b>What's included</b>${g.includes.map(i=>{const x=gear(i);return `<div style="display:flex;justify-content:space-between;gap:10px"><span>${x.name}</span><span class="muted num">${money(x.retail)} new</span></div>`}).join("")}</div>`
-        :`<p class="muted" style="font-size:.9rem">Meets ${g.std}. Inspected and cleaned before delivery.</p>`}
+        :`<p class="muted" style="font-size:.9rem">Meets ${g.std}. ${g.note?"Brand-new and sealed in the box.":"Inspected and cleaned before delivery."}</p>`}
       <div class="panel slider">
         ${fixed?`<p><b>Rental length:</b> <span id="lenLabel" style="color:var(--blue)"></span></p><input type="hidden" id="len" value="0">`
         :`<label for="len">How long do you need it? <span id="lenLabel" style="color:var(--blue)"></span></label>
@@ -484,7 +486,7 @@ rentals(){
 function card(g){
   const ts=tiersFor(g), only=ts.length===1;
   const label = only ? `<b class="num">${money(rentPrice(g,ts[0]))}</b> for ${ts[0].label}` : g.ages==="Short stays" ? `from <b class="num">${money(rentPrice(g,ts[0]))}</b> for 2 weeks` : `from <b class="num">${money(lowestMonthly(g))}</b>/mo`;
-  return `<a class="card" href="#item-${g.id}"><div class="pic" ${g.includes?'style="background:var(--pink-soft)"':""}>${icon(g.icon)}</div><div class="body"><p class="eyebrow" style="font-size:.7rem">${g.cat}</p><h3>${g.name}</h3><p class="muted" style="font-size:.88rem">${g.ages}</p>
+  return `<a class="card" href="#item-${g.id}"><div class="pic" ${g.includes?'style="background:var(--pink-soft)"':""}>${icon(g.icon)}</div><div class="body"><p class="eyebrow" style="font-size:.7rem">${g.cat}</p><h3>${g.name}</h3><p class="muted" style="font-size:.88rem">${g.ages}</p>${g.note?`<p class="muted" style="font-size:.78rem">*New for every customer, never re-rented</p>`:""}
   <div class="price"><span>${label}</span><span class="muted num" style="font-size:.85rem;text-decoration:line-through">${money(retailOf(g))} new</span></div></div></a>`;
 }
 
